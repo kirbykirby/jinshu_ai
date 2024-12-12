@@ -1,11 +1,8 @@
 """
 Anthropic
 """
-
-# CloseAI转发地址
-ANTHROPIC_BASE_URL_1 = "https://api.openai-proxy.org/anthropic"  # 【主力域名】推荐线上服务使用，全球CDN加速
-ANTHROPIC_BASE_URL_2 = "https://api.openai-proxy.live/anthropic"  # 【备用域名】基于Cloudflare的备用域名，有100秒超时限制，建议仅供首选域名无法访问时使用
-ANTHROPIC_BASE_URL_3 = "https://api.closeai-proxy.xyz/anthropic"  # 【国内专用】针对国内做过全链路优化，但承载力较低，推荐个人客户端使用
+# 柏拉图AI注册链接
+link = "https://api.bltcy.ai/register?aff=q3ue"
 
 # 柏拉图AI转发地址
 BLT_BASE_URL_1 = "https://api.bltcy.cn/v1"  # 国内请求地址，屏蔽海外流量
