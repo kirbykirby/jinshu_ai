@@ -56,7 +56,7 @@ def set_document_style(doc, translated_paragraphs):
     return doc
 
 
-def replace_multiple_line_breaks_in_docx(file_path, output_path=None):
+def reformat_docx(file_path, output_path=None, first_line_indent=0.74):
     doc = Document(file_path)
 
     # 如果没有指定输出路径，则覆盖原文件
@@ -80,6 +80,23 @@ def replace_multiple_line_breaks_in_docx(file_path, output_path=None):
             if current_br.getnext() == next_br:
                 # 创建新段落元素
                 new_p = OxmlElement("w:p")
+                # 添加段落属性
+                pPr = OxmlElement('w:pPr')
+
+                # 添加缩进设置
+                ind = OxmlElement('w:ind')
+                ind.set(qn('w:firstLine'), str(int(first_line_indent * 567)))
+
+                # 添加段落间距和行距设置
+                spacing = OxmlElement('w:spacing')
+                spacing.set(qn('w:after'), '100')  # 段后5磅（5pt = 100 twentieths of a point）
+                spacing.set(qn('w:line'), '240')  # 单倍行距（240 = 12pt）
+                spacing.set(qn('w:lineRule'), 'auto')  # 设置行距规则为自动
+
+                pPr.append(ind)
+                pPr.append(spacing)
+                new_p.append(pPr)
+
                 # 在当前换行符位置插入新段落
                 current_br.getparent().insert(
                     current_br.getparent().index(current_br), new_p
@@ -88,8 +105,16 @@ def replace_multiple_line_breaks_in_docx(file_path, output_path=None):
                 current_br.getparent().remove(current_br)
                 next_br.getparent().remove(next_br)
 
+        # 为现有段落添加缩进和间距设置
+        if not paragraph.style.name.startswith('Heading'):  # 不对标题应用设置
+            pPr = p.get_or_add_pPr()
+            ind = pPr.get_or_add_ind()
+            ind.set(qn('w:firstLine'), str(int(first_line_indent * 567)))
+
+            # 添加段落间距和行距设置
+            spacing = pPr.get_or_add_spacing()
+            spacing.set(qn('w:after'), '100')  # 段后5磅
+            spacing.set(qn('w:line'), '240')  # 单倍行距
+            spacing.set(qn('w:lineRule'), 'auto')  # 行距规则为自动
+
     doc.save(output_path)
-
-
-if __name__ == "__main__":
-    replace_multiple_line_breaks_in_docx("../results/Murong_Hui.docx")

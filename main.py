@@ -11,6 +11,7 @@ from translator import (
     preprocess_text,
     save_translations,
     perview_paragraphs,
+    reformat_docx,
 )
 from dotenv import load_dotenv
 
@@ -102,7 +103,7 @@ def init_translator_and_translate(
         original_language="Classical Chinese",
         target_language="English",
         subject="Liu Cong",
-        original_text_md="original_text/Liu_Cong.md",
+        original_text_md="original_text/102_Liu_Cong.md",
         result_text_docx="results/Liu_Cong.docx",
         translate_paragraphs=5,
         start_paragraph=0,
@@ -154,14 +155,13 @@ if __name__ == "__main__":
         document_type="historical records",
         original_language="Classical Chinese",
         target_language="English",
-        subject="Murong Hui",
-        original_text_md="original_text/Murong_Hui.md",
-        result_text_docx="results/Murong_Hui.docx",
-        translate_paragraphs=5,
-        start_paragraph=0,
+        subject="Murong Huang",
+        original_text_md="original_text/109_Murong_Huang.md",
+        result_text_docx="results/Murong_Huang.docx",
+        translate_paragraphs=1,
+        start_paragraph=53,
         mode="全部",
         max_chars_per_paragraph=500,
         debug=True,
         special_instructions=additional_instructions,
     )
-    dele

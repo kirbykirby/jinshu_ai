@@ -2,7 +2,7 @@ import os
 import re
 import string
 from docx import Document
-from .formatter import set_document_style, replace_multiple_line_breaks_in_docx
+from .formatter import set_document_style, reformat_docx
 
 
 def split_long_paragraph(p, max_len):
@@ -125,4 +125,4 @@ def save_translations(result_text_docx, translated_paragraphs):
         doc = Document(result_text_docx)
     doc = set_document_style(doc, translated_paragraphs)
     doc.save(result_text_docx)
-    replace_multiple_line_breaks_in_docx(result_text_docx)
+    reformat_docx(result_text_docx)

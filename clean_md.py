@@ -2,8 +2,8 @@ def clean_md(md_file):
     with open(md_file, 'r', encoding='utf-8') as f:
         lines = f.readlines()
 
-    # 删除前20行和最后3行
-    lines = lines[20:-3]
+    # 删除前20行和最后2行
+    lines = lines[20:-2]
 
     cleaned_lines = []
     for line in lines:
@@ -22,4 +22,4 @@ def clean_md(md_file):
 
 
 if __name__ == "__main__":
-    clean_md("original_text/Murong_Huang.md")
+    clean_md("original_text/110_Murong_Jun.md")
