@@ -89,3 +89,7 @@ def replace_multiple_line_breaks_in_docx(file_path, output_path=None):
                 next_br.getparent().remove(next_br)
 
     doc.save(output_path)
+
+
+if __name__ == "__main__":
+    replace_multiple_line_breaks_in_docx("../results/Murong_Hui.docx")

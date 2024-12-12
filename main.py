@@ -154,9 +154,9 @@ if __name__ == "__main__":
         document_type="historical records",
         original_language="Classical Chinese",
         target_language="English",
-        subject="Liu Yao",
-        original_text_md="original_text/Liu_Yao.md",
-        result_text_docx="results/Liu_Yao.docx",
+        subject="Murong Hui",
+        original_text_md="original_text/Murong_Hui.md",
+        result_text_docx="results/Murong_Hui.docx",
         translate_paragraphs=5,
         start_paragraph=0,
         mode="全部",
@@ -164,3 +164,4 @@ if __name__ == "__main__":
         debug=True,
         special_instructions=additional_instructions,
     )
+    dele
