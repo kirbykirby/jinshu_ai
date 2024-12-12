@@ -3,17 +3,23 @@
 
 
 ## Prologue
-Verily, the Jin Dynasty was renowned for its magnanimity and virtue. Nevertheless, heaven visited calamities upon it, causing the central plains to be lost, and the five Hu to vie for supremacy, thereby defiling the sacred altars. Moved by these events, I oftentimes reflect upon the rise and fall of ancient realms.
+Verily, the Jin Dynasty, though renowned for virtue, suffered heaven's calamities. The central plains were lost, and the five Hu defiled the sacred altars. These events move me to contemplate the fate of ancient realms.
 
-In the year of Jiazi, the world was beset by tribulations, and the plague spread far and wide. Confining myself within the precincts of my study, I acquired Wang’s "A History of the Wei, Jin, Northern and Southern Dynasties." I perused it day and night, and oftentimes found it to be replete with wisdom. Regrettably, my memory is feeble, and after protracted reading, much was forgotten. Thus, I resolved to commit these lessons to parchment, and vowed to disseminate the chronicles of Chinese history across the globe.
+In the year of Jiazi, amid plague and tribulation, I discovered Wang's "History of the Wei, Jin, Northern and Southern Dynasties" and immersed myself in its wisdom. My feeble memory prompted me to record these lessons, aspiring to share Chinese history with the world.
 
-Unwilling to demean myself, I established an English YouTube channel to elucidate the narratives of our dynasties. Whenever I wrote, I frequently relied upon "The Book of Jin." Initially, I was unversed in the classical tongue but diligently studied and translated it into English. My aim was to expound lofty concepts in simple terms, thus elucidating the intentions of the ancients.
+I established an English YouTube channel, drawing from "The Book of Jin." 
 
-Subsequently, the laborious task of video editing compelled me to discontinue the channel. However, the translation work continued to preoccupy my thoughts. This spring, I learned Python and delved into the principles of artificial intelligence, but my energies were limited, and I put the project on hold.
+Though initially unfamiliar with classical texts, I strove to render their profound meanings in simple English. 
 
-Recently, with some respite, I suddenly conceived of the potential of AI to aid my translation endeavors. In the "Twenty-Four Histories," which encompass millions of words, I have but read "The Book of Jin"'s one hundred and thirty volumes from beginning to end. Is this not a divine providence?
+While video editing ultimately forced me to abandon the channel, the translation work persisted in my thoughts.
 
-The ancients said, "Many commenced well, but few completed their tasks." Today, with the assistance of AI, I hope to consummate this unfinished work, which would be a great achievement. So I completed this script in two days.
+This spring, though my foray into Python and artificial intelligence was brief, it revealed AI's potential for translation.
+
+Of the vast "Twenty-Four Histories," I have completed only Jinshu's volumes. Is this not a divine providence?
+
+The ancients said, "Many commenced well, but few completed their tasks." Today, with the assistance of AI, I hope to consummate this unfinished work, which would be a great achievement. 
+
+So I wrote these scripts in two days.
 
 Though devoid of innate talent, I wish to emulate Sima Qian and continue the legacy of my forebears, recounting the rise and fall of the Jin Dynasty and elucidating the causes of success and failure. With the aid of AI, I hope to bridge the chasm between ancient and modern times, thereby fulfilling this aspiration.
 
