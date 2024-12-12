@@ -41,11 +41,53 @@
 
 该网站**严禁**自动爬取，需手动获取数据。
 1. 打开一章节，Ctrl+A，Ctrl+C，Ctrl+V至md文件。
-2. 删除前后多余文本，保证每一段前都有编号。
+2. 运行`clean_md.py`清洗md文件。
 
 ## 成本
 以翻译《刘曜载记》为例：
-原文11435字，共花费￥4.35（￥0.38/千字）。
+原文11435字，共花费4.35元，每千字的费用是0.38元（0.05美元）。
+按照这个价格计算，翻译完整部《晋书》（1,158,126字）大约需要440.08元（61.12美元）。
+
+## 注意事项
+### 1. 文言文常省略主语
+填写`init_translator_and_translate`函数的`subject`参数可以避免错译主语。例子：
+```
+原文：
+弱冠游于洛阳，坐事当诛，亡匿朝鲜，遇赦而归。（《刘曜载记》）
+
+错误翻译：
+At the age of twenty, they traveled to Luoyang, where they faced execution for an offense but fled to Joseon.
+
+正确翻译：
+At the age of twenty, Liu Yao traveled to Luoyang, where he faced execution for an offense but fled to Joseon.
+```
+
+### 2. AI偶尔会直译人名/地名用字造成错译
+例子：
+```
+原文：
+黄石屠各路松多起兵于新平、扶风，聚众数千，附于南阳王保。（《刘曜载记》）
+
+错误翻译：
+Huangshi slauthered Lusongduo, who raised an army in Xinping and Fufeng, gathering several thousand followers and allied with Prince of Nanyang Bao.
+（错误直译“屠”字为"slaugher"。“屠各”为匈奴部落名，专有名词应音译。
+
+正确翻译：
+In Huangshi, Lu Songduo of the Tuge raised an army in Xinping and Fufeng, gathering several thousand followers and allied with Prince of Nanyang Bao.
+```
+
+### 3. 翻译专有名词时不一致
+```
+原文：
+使持节
+
+翻译：
+Envoy with Imperial Insignia
+Envoy with Imperial Credentials
+Bearer with Imperial Insignia
+...
+```
+
 
 ## 项目结构
 ```

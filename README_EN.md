@@ -41,10 +41,53 @@ The original text of "The Book of Jin" is available [here](https://ctext.org/wik
 
 This website **strictly prohibits** automatic scraping; you must manually obtain the data.
 1. Open a chapter, Ctrl+A, Ctrl+C, Ctrl+V to a markdown file.
-2. Remove any extraneous text at the beginning and end, ensuring each paragraph starts with a number.
+2. Run `clean_md.py` to clean the data.
 
 ## Costs
-For example, translating "The Biography of Liu Yao" took 11,435 characters and cost ¥4.35 (¥0.38 or $0.05 per thousand characters).
+The translation of "Records of Liu Yao" (11,435 characters) cost me ¥4.35, at a rate of ¥0.38 ($0.05) per thousand characters.
+Based on this rate, translating the complete Jinshu (1,158,126 characters) would cost approximately ¥440.08 ($61.12).
+
+## Important Notes
+
+### 1. Classical Chinese Often Omits Subjects
+Fill in the `subject` parameter in the `init_translator_and_translate` function to avoid mistranslating subjects. Example:
+```
+Original text:
+弱冠游于洛阳，坐事当诛，亡匿朝鲜，遇赦而归。（《刘曜载记》）
+
+Incorrect translation:
+At the age of twenty, they traveled to Luoyang, where they faced execution for an offense but fled to Joseon.
+
+Correct translation:
+At the age of twenty, Liu Yao traveled to Luoyang, where he faced execution for an offense but fled to Joseon.
+```
+
+### 2. AI Occasionally Mistranslates Names/Places by Translating Individual Characters
+Example:
+```
+Original text:
+黄石屠各路松多起兵于新平、扶风，聚众数千，附于南阳王保。（《刘曜载记》）
+
+Incorrect translation:
+Huangshi slauthered Lusongduo, who raised an army in Xinping and Fufeng, gathering several thousand followers and allied with Prince of Nanyang Bao.
+(Incorrectly translates the character "屠" as "slaughter". "Tuge" is a Xiongnu tribe name and should be transliterated as a proper noun.)
+
+Correct translation:
+In Huangshi, Lu Songduo of the Tuge raised an army in Xinping and Fufeng, gathering several thousand followers and allied with Prince of Nanyang Bao.
+```
+
+
+### 3. Inconsistent Terminology Translation
+```
+Original text:
+使持节
+
+Translation variations:
+Envoy with Imperial Insignia
+Envoy with Imperial Credentials
+Bearer with Imperial Insignia
+...
+```
 
 ## Project Structure
 ```
