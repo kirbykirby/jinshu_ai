@@ -1,4 +1,4 @@
-# 晋书AI翻译助手
+# 晋书AI
 [**English**](README_EN.md) | **简体中文**
 
 
