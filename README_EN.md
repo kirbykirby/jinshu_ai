@@ -1,6 +1,14 @@
-# Jinshu AI Translator
+<div align="center">
+
+
+<h1>Jinshu AI</h1>
+
+
 **English** | [**简体中文**](README.md)
 
+</div>
+
+---
 
 ## Prologue
 Verily, the Jin Dynasty, though renowned for virtue, suffered heaven's calamities. The central plains were lost, and the five Hu defiled the sacred altars. These events move me to contemplate the fate of ancient realms.
@@ -45,7 +53,10 @@ This website **strictly prohibits** automatic scraping; you must manually obtain
 
 ## Costs
 The translation of "Records of Liu Yao" (11,435 characters) cost me ¥4.35, at a rate of ¥0.38 ($0.05) per thousand characters.
+
 Based on this rate, translating the complete Jinshu (1,158,126 characters) would cost approximately ¥440.08 ($61.12).
+
+Due to some LLMs' caching capability, the actual cost would be lower: if the cache is hit, the price is only 10%-50% of the normal rate.
 
 ## Important Notes
 
@@ -53,10 +64,10 @@ Based on this rate, translating the complete Jinshu (1,158,126 characters) would
 Fill in the `subject` parameter in the `init_translator_and_translate` function to avoid mistranslating subjects. Example:
 ```
 Original text:
-弱冠游于洛阳，坐事当诛，亡匿朝鲜，遇赦而归。（《刘曜载记》）
+弱冠游于洛阳，坐事当诛，亡匿朝鲜……（《刘曜载记》）
 
 Incorrect translation:
-At the age of twenty, they traveled to Luoyang, where they faced execution for an offense but fled to Joseon.
+At the age of twenty, [incorrect subject] traveled to Luoyang, where [incorrect subject] faced execution for an offense but fled to Joseon.
 
 Correct translation:
 At the age of twenty, Liu Yao traveled to Luoyang, where he faced execution for an offense but fled to Joseon.
@@ -85,7 +96,7 @@ Original text:
 Translation variations:
 Envoy with Imperial Insignia
 Envoy with Imperial Credentials
-Bearer with Imperial Insignia
+Bearer of Imperial Insignia
 ...
 ```
 

@@ -83,6 +83,7 @@ def translate(
     save_translations(result_text_docx, translated_paragraphs)
     total_time = time.time() - start_time
     logger.info("-" * 12 + f" 翻译完成 " + "-" * 12)
+    logger.info(f"翻译文档：{original_text_md}，输出文档：{result_text_docx}")
     logger.info(f"翻译模式：{mode}")
     logger.info(f"从第{start_paragraph}段开始翻译{translate_count}段")
     logger.info(f"翻译段落数：{translate_count}")
@@ -155,11 +156,11 @@ if __name__ == "__main__":
         document_type="historical records",
         original_language="Classical Chinese",
         target_language="English",
-        subject="Murong Huang",
-        original_text_md="original_text/109_Murong_Huang.md",
-        result_text_docx="results/Murong_Huang.docx",
+        subject="Murong Jun",
+        original_text_md="original_text/110_Murong_Jun.md",
+        result_text_docx="results/110_Murong_Jun.docx",
         translate_paragraphs=1,
-        start_paragraph=53,
+        start_paragraph=0,
         mode="全部",
         max_chars_per_paragraph=500,
         debug=True,
