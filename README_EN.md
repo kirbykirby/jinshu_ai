@@ -18,7 +18,6 @@ The ancients said, "Many commenced well, but few completed their tasks." Today, 
 Though devoid of innate talent, I wish to emulate Sima Qian and continue the legacy of my forebears, recounting the rise and fall of the Jin Dynasty and elucidating the causes of success and failure. With the aid of AI, I hope to bridge the chasm between ancient and modern times, thereby fulfilling this aspiration.
 
 ## Introduction
-Introduction
 To put it in English, this is a tool that uses AI to translate md files and outputs the translated text in a formatted docx file. 
 In fact, you can translate any type of document using this tool lol
 
@@ -65,4 +64,3 @@ For example, translating "The Biography of Liu Yao" took 11,435 characters and c
 - [ ] Support more translation engines
 - [ ] Support the native Anthropic API
 - [ ] Add a user interface
-- 
