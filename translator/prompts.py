@@ -12,13 +12,13 @@ def set_translator_prompt(
 Subject of the text: {subject}
 
 Rules:
-- DO NOT EXPLAIN ANYTHING, DO NOT SUMMARIZE ANYTHING, ONLY TRANSLATE and output the FINAL TRANSLATION
+- ONLY TRANSLATE and output the FINAL TRANSLATION
+- DO NOT EXPLAIN ANYTHING, DO NOT SUMMARIZE ANYTHING, DO NOT BREAKDOWN ANYTHING
 - Preserve accuracy
 - Keep cultural context
-- Use [?] for uncertain terms
-{special_instructions}
+- Use [?] for uncertain terms{special_instructions}
 """
 
 
-def wrap_prompt(prompt):
-    return f"<TRANSLATE>{prompt}</TRANSLATE>"
+def wrap_prompt(prompt, tag="TRANSLATE"):
+    return f"<{tag}>{prompt}</{tag}>"

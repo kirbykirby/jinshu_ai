@@ -1,5 +1,5 @@
 def clean_md(md_file):
-    with open(md_file, 'r', encoding='utf-8') as f:
+    with open(md_file, "r", encoding="utf-8") as f:
         lines = f.readlines()
 
     # 删除前20行和最后2行
@@ -12,13 +12,13 @@ def clean_md(md_file):
             continue
 
         # 检查行首是否为数字或《
-        if not (line[0].isdigit() or line[0] == '《'):
+        if not (line[0].isdigit() or line[0] == "《"):
             continue
 
         cleaned_lines.append(line)
 
-    with open(md_file, 'w', encoding='utf-8') as f:
-        f.write('\n'.join(cleaned_lines))
+    with open(md_file, "w", encoding="utf-8") as f:
+        f.write("\n".join(cleaned_lines))
 
 
 if __name__ == "__main__":

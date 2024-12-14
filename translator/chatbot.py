@@ -88,7 +88,9 @@ class Chatbot:
         cost = self.calculate_cost(prompt_tokens, completion_tokens)
         self.usage_metrics.total_cost += cost
 
-    def chat_stream(self, message: str, max_retries: int = 3, initial_delay: float = 1.0):
+    def chat_stream(
+        self, message: str, max_retries: int = 3, initial_delay: float = 1.0
+    ):
         if not message.strip():
             yield "Error: Empty message"
             return
@@ -142,7 +144,13 @@ class Chatbot:
                 time.sleep(delay)
                 delay *= 2
 
-    def chat(self, message: str, stream=True, max_retries: int = 3, initial_delay: float = 1.0):
+    def chat(
+        self,
+        message: str,
+        stream=True,
+        max_retries: int = 3,
+        initial_delay: float = 1.0,
+    ):
         if stream:
             return self.chat_stream(message)
         else:
@@ -223,14 +231,14 @@ class Chatbot:
                 if debug:
                     print("\n")
                     logger.debug(f"模型：{self.model}")
-                    logger.debug(f"总耗时：{total_time:.2f}秒")
-                    logger.debug(f"总字数：{len(full_response)}")
-                    logger.debug(f"每秒字数：{len(full_response) / total_time:.2f}")
-                    logger.debug(f"总块数：{metrics['chunk_count']}")
-                    logger.debug(
-                        f"每秒令牌数：{metrics['total_tokens'] / total_time:.2f}"
-                    )
-                    logger.debug(f"首字延迟: {self.first_char_time:.2f}秒")
+                    logger.debug(f"耗时：{total_time:.2f}秒")
+                    logger.debug(f"字数：{len(full_response)}")
+                    # logger.debug(f"每秒字数：{len(full_response) / total_time:.2f}")
+                    # logger.debug(f"总块数：{metrics['chunk_count']}")
+                    # logger.debug(
+                    #     f"每秒令牌数：{metrics['total_tokens'] / total_time:.2f}"
+                    # )
+                    # logger.debug(f"首字延迟: {self.first_char_time:.2f}秒")
                 stat = self.get_usage_statistics(debug)
 
                 return full_response, stat

@@ -1,6 +1,7 @@
 """
 Anthropic
 """
+
 # 柏拉图AI注册链接
 link = "https://api.bltcy.ai/register?aff=q3ue"
 

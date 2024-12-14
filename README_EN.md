@@ -73,7 +73,7 @@ Correct translation:
 At the age of twenty, Liu Yao traveled to Luoyang, where he faced execution for an offense but fled to Joseon.
 ```
 
-### 2. AI Occasionally Mistranslates Names/Places by Translating Individual Characters
+### 2. Occasional Mistranslations of Names/Places by Translating Individual Characters
 Example:
 ```
 Original text:

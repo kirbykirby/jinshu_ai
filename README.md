@@ -7,7 +7,9 @@
 ---
 
 ## 序
-余以为晋氏之祚，钟灵毓秀。然天降祸乱，四海板荡，五胡扛鼎，七庙隳尊。有感于斯，常思古人兴亡之迹。
+余以为晋氏之祚，钟灵毓秀。然天降祸乱，四海板荡，五胡扛鼎，六宗失序，七庙隳尊。
+
+有感于斯，常思古人兴亡之迹。
 
 时甲子之岁，天下多故，瘟疫盛行。余闭门不出，得王氏《魏晋南北朝史》一书，昼夜研读，辄有会心。
 
@@ -64,13 +66,13 @@
 弱冠游于洛阳，坐事当诛，亡匿朝鲜，遇赦而归。（《刘曜载记》）
 
 错误翻译：
-At the age of twenty, they traveled to Luoyang, where they faced execution for an offense but fled to Joseon.
+At the age of twenty, [incorrect subject] traveled to Luoyang, where [incorrect subject] faced execution for an offense but fled to Joseon.
 
 正确翻译：
 At the age of twenty, Liu Yao traveled to Luoyang, where he faced execution for an offense but fled to Joseon.
 ```
 
-### 2. AI偶尔会直译人名/地名用字造成错译
+### 2. 直译人名/地名用字偶尔造成错译
 例子：
 ```
 原文：

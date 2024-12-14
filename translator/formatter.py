@@ -1,5 +1,6 @@
+import re
 from docx import Document
-from docx.enum.text import WD_ALIGN_PARAGRAPH
+from docx.enum.text import WD_ALIGN_PARAGRAPH, WD_PARAGRAPH_ALIGNMENT
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 from docx.shared import Cm, Pt
@@ -56,65 +57,91 @@ def set_document_style(doc, translated_paragraphs):
     return doc
 
 
+def create_paragraph_properties(first_line_indent=0.74):
+    """创建段落属性元素"""
+    pPr = OxmlElement("w:pPr")
+
+    # 添加缩进设置
+    ind = OxmlElement("w:ind")
+    ind.set(qn("w:firstLine"), str(int(first_line_indent * 567)))
+
+    # 添加段落间距和行距设置
+    spacing = OxmlElement("w:spacing")
+    spacing.set(qn("w:after"), "100")  # 段后5磅
+    spacing.set(qn("w:line"), "240")  # 单倍行距
+    spacing.set(qn("w:lineRule"), "auto")  # 行距规则为自动
+
+    pPr.append(ind)
+    pPr.append(spacing)
+    return pPr
+
+
+def create_new_paragraph(first_line_indent=0.74):
+    """创建新段落元素"""
+    new_p = OxmlElement("w:p")
+    pPr = create_paragraph_properties(first_line_indent)
+    new_p.append(pPr)
+    return new_p
+
+
+def handle_consecutive_breaks(br_elements, first_line_indent):
+    """处理连续的换行符"""
+    for i in range(len(br_elements) - 1):
+        current_br = br_elements[i]
+        next_br = br_elements[i + 1]
+
+        if current_br.getnext() == next_br:
+            new_p = create_new_paragraph(first_line_indent)
+
+            # 在当前换行符位置插入新段落
+            current_br.getparent().insert(
+                current_br.getparent().index(current_br), new_p
+            )
+            # 移除连续的两个换行符
+            current_br.getparent().remove(current_br)
+            next_br.getparent().remove(next_br)
+
+
+def apply_paragraph_formatting(paragraph, first_line_indent):
+    """应用段落格式设置"""
+    if not paragraph.style.name.startswith("Heading"):
+        p = paragraph._element
+        pPr = p.get_or_add_pPr()
+
+        # 设置首行缩进
+        ind = pPr.get_or_add_ind()
+        ind.set(qn("w:firstLine"), str(int(first_line_indent * 567)))
+
+        # 设置段落间距和行距
+        spacing = pPr.get_or_add_spacing()
+        spacing.set(qn("w:after"), "100")
+        spacing.set(qn("w:line"), "240")
+        spacing.set(qn("w:lineRule"), "auto")
+
+
 def reformat_docx(file_path, output_path=None, first_line_indent=0.74):
+    """重新格式化Word文档"""
     doc = Document(file_path)
 
-    # 如果没有指定输出路径，则覆盖原文件
     if output_path is None:
         output_path = file_path
 
     for paragraph in doc.paragraphs:
-        # 获取段落的XML元素
+        # 处理换行符
         p = paragraph._element
-        # 查找所有的手动换行符（line break）
         br_elements = p.findall(
             ".//w:br",
             {"w": "http://schemas.openxmlformats.org/wordprocessingml/2006/main"},
         )
 
-        # 如果找到连续的换行符，替换为段落分隔符
-        for i in range(len(br_elements) - 1):
-            current_br = br_elements[i]
-            next_br = br_elements[i + 1]
-            # 检查两个br元素是否相邻
-            if current_br.getnext() == next_br:
-                # 创建新段落元素
-                new_p = OxmlElement("w:p")
-                # 添加段落属性
-                pPr = OxmlElement('w:pPr')
+        # 处理连续换行符
+        handle_consecutive_breaks(br_elements, first_line_indent)
 
-                # 添加缩进设置
-                ind = OxmlElement('w:ind')
-                ind.set(qn('w:firstLine'), str(int(first_line_indent * 567)))
-
-                # 添加段落间距和行距设置
-                spacing = OxmlElement('w:spacing')
-                spacing.set(qn('w:after'), '100')  # 段后5磅（5pt = 100 twentieths of a point）
-                spacing.set(qn('w:line'), '240')  # 单倍行距（240 = 12pt）
-                spacing.set(qn('w:lineRule'), 'auto')  # 设置行距规则为自动
-
-                pPr.append(ind)
-                pPr.append(spacing)
-                new_p.append(pPr)
-
-                # 在当前换行符位置插入新段落
-                current_br.getparent().insert(
-                    current_br.getparent().index(current_br), new_p
-                )
-                # 移除连续的两个换行符
-                current_br.getparent().remove(current_br)
-                next_br.getparent().remove(next_br)
-
-        # 为现有段落添加缩进和间距设置
-        if not paragraph.style.name.startswith('Heading'):  # 不对标题应用设置
-            pPr = p.get_or_add_pPr()
-            ind = pPr.get_or_add_ind()
-            ind.set(qn('w:firstLine'), str(int(first_line_indent * 567)))
-
-            # 添加段落间距和行距设置
-            spacing = pPr.get_or_add_spacing()
-            spacing.set(qn('w:after'), '100')  # 段后5磅
-            spacing.set(qn('w:line'), '240')  # 单倍行距
-            spacing.set(qn('w:lineRule'), 'auto')  # 行距规则为自动
+        # 应用段落格式
+        apply_paragraph_formatting(paragraph, first_line_indent)
 
     doc.save(output_path)
+
+
+if __name__ == "__main__":
+    reformat_docx("../results/110_Murong_Jun.docx")

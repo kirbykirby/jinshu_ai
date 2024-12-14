@@ -11,7 +11,6 @@ from translator import (
     preprocess_text,
     save_translations,
     perview_paragraphs,
-    reformat_docx,
 )
 from dotenv import load_dotenv
 
@@ -28,14 +27,15 @@ def translate_paragraph(bot: Chatbot, paragraph: str, debug: bool = False):
 
 
 def translate(
-        bot: Chatbot,
-        original_text_md: str,
-        result_text_docx: str,
-        translate_paragraphs: int = 5,
-        start_paragraph: int = 0,
-        mode: str = "分段",
-        max_chars_per_paragraph: int = 500,
-        debug: bool = False,
+    bot: Chatbot,
+    original_text_md: str,
+    result_text_docx: str,
+    translate_paragraphs: int = 5,
+    start_paragraph: int = 0,
+    mode: str = "分段",
+    max_chars_per_paragraph: int = 500,
+    min_chars_per_paragraph: int = 10,
+    debug: bool = False,
 ):
     """
     翻译指定md文件，并将翻译结果保存到docx文件
@@ -48,12 +48,15 @@ def translate(
         start_paragraph (int, optional): 开始翻译的段落数. Defaults to 0.
         mode (str, optional): 翻译模式 ["全部"|"分段"]. Defaults to "分段".
         max_chars_per_paragraph (int, optional): 每段最大字数. Defaults to 500.
+        min_chars_per_paragraph (int, optional): 每段最小字数. Defaults to 10.
         debug (bool, optional): 是否开启debug模式. Defaults to False.
     """
     start_time = time.time()
     with open(original_text_md, "r", encoding="utf-8") as f:
         paragraphs, num_paragraphs = preprocess_text(
-            f.read(), max_chars=max_chars_per_paragraph
+            f.read(),
+            max_chars=max_chars_per_paragraph,
+            min_chars=min_chars_per_paragraph,
         )
 
     # 根据模式设置翻译范围
@@ -71,10 +74,10 @@ def translate(
     total_cost_rmb = 0
     translated_paragraphs = []
     for i in tqdm(
-            range(start_paragraph, start_paragraph + translate_count),
-            desc="翻译进度",
-            total=translate_count,
-            unit="段",
+        range(start_paragraph, start_paragraph + translate_count),
+        desc="翻译进度",
+        total=translate_count,
+        unit="段",
     ):
         translated_paragraph, stat = translate_paragraph(bot, paragraphs[i], debug)
         translated_paragraphs.append(translated_paragraph)
@@ -96,35 +99,41 @@ def translate(
 
 
 def init_translator_and_translate(
-        api_key,
-        model="claude-3-5-sonnet-latest",
-        base_url=BLT_BASE_URL_2,
-        document="Book of Jin",
-        document_type="historical records",
-        original_language="Classical Chinese",
-        target_language="English",
-        subject="Liu Cong",
-        original_text_md="original_text/102_Liu_Cong.md",
-        result_text_docx="results/Liu_Cong.docx",
-        translate_paragraphs=5,
-        start_paragraph=0,
-        mode="分段",
-        max_chars_per_paragraph=500,
-        debug=False,
-        special_instructions="",
+    api_key,
+    model="claude-3-5-sonnet-latest",
+    base_url=BLT_BASE_URL_2,
+    document="Book of Jin",
+    document_type="historical records",
+    original_language="Classical Chinese",
+    target_language="English",
+    subject="Liu Cong",
+    original_text_md="original_text/102_Liu_Cong.md",
+    result_text_docx="results/102_Liu_Cong.docx",
+    translate_paragraphs=5,
+    start_paragraph=0,
+    mode="分段",
+    max_chars_per_paragraph=500,
+    min_chars_per_paragraph=10,
+    debug=False,
+    special_instructions="",
 ):
+    system_prompt = set_translator_prompt(
+        document=document,
+        document_type=document_type,
+        original_language=original_language,
+        target_language=target_language,
+        subject=subject,
+        special_instructions=special_instructions,
+    )
+
+    if debug:
+        logger.debug(f"请确认系统提示词：\n{system_prompt}")
+
     bot = init_chatbot(
         api_key=api_key,
         model=model,
         base_url=base_url,
-        system_prompt=set_translator_prompt(
-            document=document,
-            document_type=document_type,
-            original_language=original_language,
-            target_language=target_language,
-            subject=subject,
-            special_instructions=special_instructions,
-        ),
+        system_prompt=system_prompt,
         initial_assistant_message=None,
         max_tokens=1024,
         temperature=0.2,
@@ -138,31 +147,33 @@ def init_translator_and_translate(
         start_paragraph,
         mode,
         max_chars_per_paragraph,
+        min_chars_per_paragraph,
         debug,
     )
 
 
 if __name__ == "__main__":
     additional_instructions = """
-    - Convert Chinese era to Western calendar or use (DATE) if uncertain
-    - Maintain a tone suitable for historical context
-    - Avoid modern colloquialisms
-    """
+- Convert era to Western calendar (e.g. the first year of Yongjia (307), during the Yongjia period (307-313)) or use (DATE) if uncertain
+- Maintain a tone suitable for historical context
+- Avoid modern colloquialisms
+"""
     init_translator_and_translate(
         api_key=BLT_KEY,
         model="claude-3-5-sonnet-latest",
         base_url=BLT_BASE_URL_2,
         document="Book of Jin",
         document_type="historical records",
-        original_language="Classical Chinese",
+        original_language="Classical-Chinese",
         target_language="English",
         subject="Murong Jun",
         original_text_md="original_text/110_Murong_Jun.md",
         result_text_docx="results/110_Murong_Jun.docx",
-        translate_paragraphs=1,
-        start_paragraph=0,
-        mode="全部",
+        translate_paragraphs=15,
+        start_paragraph=29,
+        mode="分段",
         max_chars_per_paragraph=500,
+        min_chars_per_paragraph=15,
         debug=True,
         special_instructions=additional_instructions,
     )
