@@ -6,7 +6,8 @@ def clean_md(md_file):
     with open(md_file, "r", encoding="utf-8") as f:
         lines = f.readlines()
 
-    logger.info("清洗文档逻辑：1.删除前20行和最后2行 2.确定行首为数字或《 ")
+    logger.info("本脚本只能清洗这里的数据：https://ctext.org/wiki.pl?if=gb&res=788577&remap=gb")
+    logger.info("清洗逻辑：1.删除前20行和最后2行 2.确定行首为数字或《 ")
 
     if lines[0][0] == "《":
         logger.warning("文档似乎已经清洗过了，是否继续清洗？(y/n): ")
