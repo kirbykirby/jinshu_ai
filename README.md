@@ -47,7 +47,7 @@
 5. 按需修改`main.py`之参数，命令行运行`uv run main.py`进行翻译。
 
 ## 📚 获取数据
-[《晋书》原始文本](https://ctext.org/wiki.pl?if=gb&res=788577&remap=gb)来自`中国哲学书电子化计划`。
+[《晋书》原始文本](https://ctext.org/wiki.pl?if=gb&res=788577&remap=gb)来自[中国哲学书电子化计划](https://ctext.org/zhs)。
 
 该网站**严禁**自动爬取，需手动获取数据。
 1. 打开一章节，Ctrl+A，Ctrl+C，Ctrl+V至md文件。

@@ -51,7 +51,7 @@ You can translate any long text using this tool, not just Jinshu. (lol)
 5. Modify the parameters in `main.py` as needed, and run `uv run main.py` from the command line to start the translation.
 
 ## 📚 Data Acquisition
-The original text of "The Book of Jin" is available [here](https://ctext.org/wiki.pl?if=gb&res=788577&remap=gb), from the "Project for the Electronic Textualization of Chinese Philosophy."
+The original text of "The Book of Jin" is available [here](https://ctext.org/wiki.pl?if=gb&res=788577&remap=gb), from the [Chinese Text Project.](https://ctext.org/ens)
 
 This website **strictly prohibits** automatic scraping; you must manually obtain the data.
 1. Open a chapter, Ctrl+A, Ctrl+C, Ctrl+V to a markdown file.
