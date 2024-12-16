@@ -108,7 +108,7 @@ def perview_paragraphs(mode, paragraphs, start_paragraph, translate_count):
     print(f"起始段落预览: {preview_text_start}...")
     print(f"结束段落预览:...{preview_text_end}")
     print(f"翻译字数：{total_chars}")
-    print(f"预计成本：{total_chars * 0.38 / 1000:.2f}元")
+    print(f"预计成本：{total_chars * 0.307 / 1000:.2f}元")
     confirm = input("是否继续翻译？(y/n): ")
     if confirm.lower() != "y":
         print("*****已取消翻译*****")

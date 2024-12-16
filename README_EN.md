@@ -10,7 +10,7 @@
 
 ---
 
-## Prologue
+## 🤓 Prologue
 Verily, the Jin Dynasty, though renowned for virtue, suffered heaven's calamities. The central plains were lost, and the five Hu defiled the sacred altars. These events move me to contemplate the fate of ancient realms.
 
 In the year of Jiazi, amid plague and tribulation, I discovered Wang's "History of the Wei, Jin, Northern and Southern Dynasties" and immersed myself in its wisdom. My feeble memory prompted me to record these lessons, aspiring to share Chinese history with the world.
@@ -31,11 +31,11 @@ So I wrote these scripts in two days.
 
 Though devoid of innate talent, I wish to emulate Sima Qian and continue the legacy of my forebears, recounting the rise and fall of the Jin Dynasty and elucidating the causes of success and failure. With the aid of AI, I hope to bridge the chasm between ancient and modern times, thereby fulfilling this aspiration.
 
-## Introduction
+## 🤔 Introduction
 To put it in English, this is a tool that uses AI to translate md files and outputs the translated text in a formatted docx file. 
 In fact, you can translate any type of document using this tool lol
 
-## Usage Guide
+## 📑 Usage Guide
 1. [Click to Register](https://api.bltcy.ai/register?aff=q3ue) at Bolatu AI to obtain your API key.
    - You can use LLM from OpenAI, Anthropic, Google, etc.
    - The price is over 60% cheaper than the official rate.
@@ -44,21 +44,19 @@ In fact, you can translate any type of document using this tool lol
 4. Install the `uv` library ([link](https://github.com/astral-sh/uv)), or [download for Windows users](https://github.com/astral-sh/uv/releases/download/0.5.8/uv-x86_64-pc-windows-msvc.zip).
 5. Modify the parameters in `main.py` as needed, and run `uv run main.py` from the command line to start the translation.
 
-## Data Acquisition
+## 📚 Data Acquisition
 The original text of "The Book of Jin" is available [here](https://ctext.org/wiki.pl?if=gb&res=788577&remap=gb), from the "Project for the Electronic Textualization of Chinese Philosophy."
 
 This website **strictly prohibits** automatic scraping; you must manually obtain the data.
 1. Open a chapter, Ctrl+A, Ctrl+C, Ctrl+V to a markdown file.
 2. Run `clean_md.py` to clean the data.
 
-## Costs
-The translation of "Records of Liu Yao" (11,435 characters) cost me ¥4.35, at a rate of ¥0.38 ($0.05) per thousand characters.
+## 💵 Costs
+The translation of "Records of Murong Wei" (8,665 characters) cost me ¥2.66, at a rate of ¥0.307 ($0.04) per thousand characters.
 
-Based on this rate, translating the complete Jinshu (1,158,126 characters) would cost approximately ¥440.08 ($61.12).
+Based on this rate, translating the complete Jinshu (1,158,126 characters) would cost approximately ¥355.54 ($48.7).
 
-Due to some LLMs' caching capability, the actual cost would be lower: if the cache is hit, the price is only 10%-50% of the normal rate.
-
-## Important Notes
+## ⚠ Important Notes
 
 ### 1. Classical Chinese Often Omits Subjects
 Fill in the `subject` parameter in the `init_translator_and_translate` function to avoid mistranslating subjects. Example:
@@ -99,8 +97,11 @@ Envoy with Imperial Credentials
 Bearer of Imperial Insignia
 ...
 ```
+Possible solution: Tell AI to give the original terms as they are, then use a table to replace them with English translations.
 
-## Project Structure
+
+
+## 💬 Project Structure
 ```
 |- README.md # Project overview
 |- main.py # Main script
@@ -117,7 +118,7 @@ Bearer of Imperial Insignia
 |- uv.lock # uv dependencies file
 ```
 
-## Future Prospects
+## 🌏 Future Prospects
 - [ ] Add custom knowledge base to the context
 - [ ] Maintain consistent translation of terminologies (e.g., official titles)
 - [ ] Automatic creation of an index of characters

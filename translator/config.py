@@ -20,8 +20,8 @@ PRICE_PER_1K_TOKENS_BLT = {
     GPT_4O_MINI: {"prompt": 0.000375, "completion": 0.0015},
     GPT_4O: {"prompt": 0.00625, "completion": 0.025},
     CLAUDE_3_5_LATEST: {
-        "prompt": 0.015 * 1.4055,
-        "completion": 0.075 * 1.4055,
+        "prompt": 0.015 * 1.1,
+        "completion": 0.075 * 1.1,
     },
-    CLAUDE_3_5_HAIKU: {"prompt": 0.0002 * 1.4055, "completion": 0.01 * 1.4055},
+    CLAUDE_3_5_HAIKU: {"prompt": 0.0002 * 1.1, "completion": 0.01 * 1.1},
 }

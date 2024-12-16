@@ -1,4 +1,9 @@
+from loguru import logger
+import time
+
+
 def clean_md(md_file):
+    start_time = time.time()
     with open(md_file, "r", encoding="utf-8") as f:
         lines = f.readlines()
 
@@ -20,6 +25,9 @@ def clean_md(md_file):
     with open(md_file, "w", encoding="utf-8") as f:
         f.write("\n".join(cleaned_lines))
 
+    duration = time.time() - start_time
+    logger.info(f"清洗完成，耗时：{duration * 1000:.2f}毫秒")
+
 
 if __name__ == "__main__":
-    clean_md("original_text/110_Murong_Jun.md")
+    clean_md("original_text/111.md")
