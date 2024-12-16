@@ -7,7 +7,7 @@ from .utils import preprocess_text, save_translations, perview_paragraphs
 from .chatbot import Chatbot
 
 
-logger.add("translator.log", format="{time}|{message}")
+logger.add("translator.log", format="{time:YYYY-MM-DD HH:mm:ss}|{message}", level="INFO")
 
 
 def init_chatbot(
@@ -79,16 +79,18 @@ def translate(
         )
 
     # 根据模式设置翻译范围
-    if mode == "全部":
+    if mode in ["全部", "all", "All", "a"]:
         translate_count = num_paragraphs
         start_paragraph = 0
         print(f"将翻译全部{translate_count}段")
-    else:  # 分段模式
+    elif mode in ["分段", "segment", "Segment", "s"]:
         translate_count = min(translate_paragraphs, num_paragraphs - start_paragraph)
         print(f"将从第{start_paragraph}段开始翻译{translate_count}段")
+    else:
+        raise ValueError(f"不支持的翻译模式：{mode}")
 
     total_chars = perview_paragraphs(mode, paragraphs, start_paragraph, translate_count)
-    print("*****开始翻译*****")
+    print("*" * 12 + f" 开 始 翻 译 " + "*" * 12)
 
     total_cost_rmb = 0
     translated_paragraphs = []
