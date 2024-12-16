@@ -3,9 +3,20 @@ import time
 
 
 def clean_md(md_file):
-    start_time = time.time()
     with open(md_file, "r", encoding="utf-8") as f:
         lines = f.readlines()
+
+    logger.info("清洗文档逻辑：1.删除前20行和最后2行 2.确定行首为数字或《 ")
+
+    if lines[0][0] == "《":
+        logger.warning("文档似乎已经清洗过了，是否继续清洗？(y/n): ")
+        if_clean = input()
+        if if_clean.lower() == "n":
+            logger.info("取消清洗文档！")
+            return
+
+    start_time = time.time()
+    logger.info("开始清洗文档！")
 
     # 删除前20行和最后2行
     lines = lines[20:-2]
@@ -27,6 +38,14 @@ def clean_md(md_file):
 
     duration = time.time() - start_time
     logger.info(f"清洗完成，耗时：{duration * 1000:.2f}毫秒")
+    get_md_word_count(md_file)
+
+
+def get_md_word_count(md_file):
+    with open(md_file, "r", encoding="utf-8") as f:
+        text = f.read()
+    logger.info(f"清洗后的文档字数：{len(text)}")
+    return len(text)
 
 
 if __name__ == "__main__":
