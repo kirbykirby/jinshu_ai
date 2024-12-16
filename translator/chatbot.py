@@ -91,10 +91,6 @@ class Chatbot:
     def chat_stream(
         self, message: str, max_retries: int = 3, initial_delay: float = 1.0
     ):
-        if not message.strip():
-            yield "Error: Empty message"
-            return
-
         self.conversation_history.append({"role": "user", "content": message})
         prompt_tokens = self.count_tokens(list(self.conversation_history))
 
@@ -129,7 +125,7 @@ class Chatbot:
                     [{"role": "assistant", "content": full_response}]
                 )
                 self.update_usage_metrics(prompt_tokens, completion_tokens)
-                break  # Success, exit the retry loop
+                break
 
             except Exception as e:
                 retries += 1
@@ -201,8 +197,8 @@ class Chatbot:
             "total_cost_rmb": self.usage_metrics.total_cost,
         }
         if debug:
-            logger.debug(f"累计令牌数：{self.usage_metrics.total_tokens}")
-            logger.debug(f"累计成本：{self.usage_metrics.total_cost:.6f}元")
+            logger.debug(f"累计令牌数/Total Tokens：{self.usage_metrics.total_tokens}")
+            logger.debug(f"累计成本/Total Cost：￥{self.usage_metrics.total_cost:.3f}(${self.usage_metrics.total_cost / 7.3:.3f})")
         return stat
 
     def get_response(self, message: str, stream=True, print_response=True, debug=False):
@@ -230,9 +226,9 @@ class Chatbot:
                 total_time = time.time() - metrics["start_time"]
                 if debug:
                     print("\n")
-                    logger.debug(f"模型：{self.model}")
-                    logger.debug(f"耗时：{total_time:.2f}秒")
-                    logger.debug(f"字数：{len(full_response)}")
+                    logger.debug(f"模型/Model：{self.model}")
+                    logger.debug(f"耗时（秒）/Total Time (s)：{total_time:.2f}")
+                    logger.debug(f"字数/Character Count：{len(full_response)}")
                     # logger.debug(f"每秒字数：{len(full_response) / total_time:.2f}")
                     # logger.debug(f"总块数：{metrics['chunk_count']}")
                     # logger.debug(
@@ -248,7 +244,7 @@ class Chatbot:
                 total_time = time.time() - metrics["start_time"]
                 if debug:
                     print("\n")
-                    logger.debug(f"总耗时：{total_time:.2f}秒")
+                    logger.debug(f"耗时（秒）/Total Time (s)：{total_time:.2f}")
                 stat = self.get_usage_statistics(debug)
                 return response, stat
         except Exception as e:

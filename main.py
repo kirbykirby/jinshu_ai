@@ -7,7 +7,7 @@ if __name__ == "__main__":
     load_dotenv()
     BLT_KEY = os.environ.get("BLT_KEY")
     additional_instructions = """
-- Convert dates to the Western calendar (e.g., Yongjia's first year as 307, the Yongjia period as 307-313) or use (DATE) if uncertain.
+- Convert dates to the Western calendar in parentheses (e.g., Yongjia's first year (307), the Yongjia period (307-313)) or use (DATE) if uncertain.
 - Maintain a tone appropriate for historical context and avoid modern colloquialisms.
 """
     init_translator_and_translate(
@@ -18,9 +18,9 @@ if __name__ == "__main__":
         document_type="historical records",
         original_language="Classical-Chinese",
         target_language="English",
-        subject="Murong Wei",
-        original_text_md="original_text/111.md",
-        result_text_docx="results/111_Murong_Wei.docx",
+        subject="慕容垂",
+        original_text_md="original_text/123.md",
+        result_text_docx="results/123_Murong_Chui.docx",
         translate_paragraphs=15,
         start_paragraph=29,
         mode="全部",

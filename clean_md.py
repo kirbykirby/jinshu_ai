@@ -45,9 +45,9 @@ def clean_md(md_file):
 def get_md_word_count(md_file):
     with open(md_file, "r", encoding="utf-8") as f:
         text = f.read()
-    logger.info(f"清洗后的文档字数：{len(text)}")
+    logger.info(f"清洗后的文档字数/Character count after cleaning：{len(text)}")
     return len(text)
 
 
 if __name__ == "__main__":
-    clean_md("original_text/111.md")
+    clean_md("original_text/123.md")
