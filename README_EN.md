@@ -11,29 +11,31 @@
 ---
 
 ## 🤓 Prologue
-Verily, the Jin Dynasty, though renowned for virtue, suffered heaven's calamities. The central plains were lost, and the five Hu defiled the sacred altars. These events move me to contemplate the fate of ancient realms.
+I believe the Jin dynasty was blessed with spiritual essence and nurtured excellence. Yet heaven sent down chaos, the four seas were in turmoil, the Five Barbarians held power, the Six Departments lost order, and the Seven Temples fell from grace.
 
-In the year of Jiazi, amid plague and tribulation, I discovered Wang's "History of the Wei, Jin, Northern and Southern Dynasties" and immersed myself in its wisdom. My feeble memory prompted me to record these lessons, aspiring to share Chinese history with the world.
+Moved by this, I often contemplate the rise and fall of ancient dynasties.
 
-I established an English YouTube channel, drawing from "The Book of Jin." 
+In the year of Jiazi, when turmoil spread across the land and plague ran rampant, I stayed behind closed doors. There I found Wang's "History of Wei, Jin, and the Northern and Southern Dynasties," which I studied day and night, finding much resonance within.
 
-Though initially unfamiliar with classical texts, I strove to render their profound meanings in simple English. 
+Alas, my memory proves dull, and much was forgotten over time. Thus, I became determined to write, resolved to spread Chinese civilization to all corners of the world.
 
-While video editing ultimately forced me to abandon the channel, the translation work persisted in my thoughts.
+Despite my limitations, I created a Western YouTube channel, telling our dynasty's stories in English. In my writing, the "Book of Jin" has been my constant companion.
 
-This spring, though my foray into Python and artificial intelligence was brief, it revealed AI's potential for translation.
+Initially unfamiliar with classical Chinese, I immersed myself in study, translating to English. Through explaining profound principles in simple terms, I began to understand the ancients' true intent.
 
-Of the vast "Twenty-Four Histories," I have completed only Jinshu's volumes. Is this not a divine providence?
+However, video editing proved to be excessively laborious. Though I temporarily suspended this endeavor, my determination to translate and narrate remained unchanged.
 
-The ancients said, "Many commenced well, but few completed their tasks." Today, with the assistance of AI, I hope to consummate this unfinished work, which would be a great achievement. 
+This spring, I learned Python and studied AI principles, but with limited energy, this pursuit was shelved.
 
-So I wrote these scripts in two days.
+Recently, during my leisure time, I suddenly realized that AI could assist in my translation work. While the Twenty-Four Histories contain a vast collection of forty million words, I have a particular fondness for the hundred and three volumes of the Book of Jin - perhaps this, too, is heaven's will.
 
-Though devoid of innate talent, I wish to emulate Sima Qian and continue the legacy of my forebears, recounting the rise and fall of the Jin Dynasty and elucidating the causes of success and failure. With the aid of AI, I hope to bridge the chasm between ancient and modern times, thereby fulfilling this aspiration.
+The ancients said: "Many begin well, few finish well." Now, with AI's assistance, completing this unfinished work would be splendid! Thus, I spent two days crafting these scripts.
+
+Though lacking in talent, I wish to follow Xuanling's aspiration, chronicle the rise and fall of the Jin, and illuminate the reasons for their success and failure. With AI as my aid, bridging past and present, I hope not to disappoint this heart's resolve.
 
 ## 🤔 Introduction
 To put it in English, this is a tool that uses AI to translate md files and outputs the translated text in a formatted docx file. 
-In fact, you can translate any type of document using this tool lol
+You can translate any long text using this tool, not just Jinshu. (lol)
 
 ## 📑 Usage Guide
 1. [Click to Register](https://api.bltcy.ai/register?aff=q3ue) at Bolatu AI to obtain your API key.
