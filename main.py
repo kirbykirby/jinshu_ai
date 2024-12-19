@@ -9,6 +9,7 @@ if __name__ == "__main__":
     additional_instructions = """
 - Convert dates to the Western calendar in parentheses (e.g., Yongjia's first year (307), the Yongjia period (307-313)) or use (DATE) if uncertain.
 - Maintain a tone appropriate for historical context and avoid modern colloquialisms.
+- Keep 《》 as they are and translate the content inside.
 """
     init_translator_and_translate(
         api_key=BLT_KEY,
