@@ -39,7 +39,7 @@ def init_chatbot(
     )
 
 
-def validate_translation_mode(
+def set_translation_mode(
     mode: str,
     num_paragraphs: int,
     start_paragraph: int,
@@ -118,7 +118,7 @@ def translate(
         )
 
     # 根据模式设置翻译范围
-    translate_count, paragraphs_to_translate = validate_translation_mode(
+    translate_count, paragraphs_to_translate = set_translation_mode(
         mode, num_paragraphs, start_paragraph, translate_paragraphs, paragraph_indices
     )
 
