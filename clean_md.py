@@ -50,4 +50,4 @@ def get_md_word_count(md_file):
 
 
 if __name__ == "__main__":
-    clean_md("original_text/123.md")
+    clean_md("original_text/124.md")
