@@ -2,7 +2,11 @@ import os
 import re
 import string
 import sys
+import time
+
 from docx import Document
+from loguru import logger
+
 from .formatter import set_document_style, reformat_docx
 
 
@@ -93,7 +97,7 @@ def preprocess_text(text, max_chars=500, min_chars=10):
 def count_characters(text):
     """计算文本的字符数(不包括空格和标点)"""
     return len(
-        [char for char in text if char.strip() and not char in string.punctuation]
+        [char for char in text if char.strip() and char not in string.punctuation]
     )
 
 
@@ -134,3 +138,37 @@ def save_translations(result_text_docx, translated_paragraphs):
     doc = set_document_style(doc, translated_paragraphs)
     doc.save(result_text_docx)
     reformat_docx(result_text_docx)
+
+
+def print_translation_stats(
+        start_time: float,
+        original_file: str,
+        output_file: str,
+        mode: str,
+        start_para: int,
+        translate_count: int,
+        para_indices: list,
+        total_chars: int,
+        total_cost_rmb: float,
+):
+    """打印翻译统计信息"""
+    total_time = time.time() - start_time
+    logger.info("-" * 12 + " 翻译完成 " + "-" * 12)
+    logger.info(f"翻译文档：{original_file}，输出文档：{output_file}")
+    logger.info(f"翻译模式：{mode}")
+
+    if mode in ["列表", "list", "List", "l"]:
+        logger.info(f"翻译段落索引：{para_indices}")
+    else:
+        logger.info(f"从第{start_para}段开始翻译{translate_count}段")
+
+    logger.info(f"翻译段落数：{translate_count}")
+    logger.info(f"总耗时（秒）：{total_time:.2f}")
+    logger.info(f"原文字数：{total_chars}")
+    logger.info(f"每秒字数：{total_chars / total_time:.2f}")
+    logger.info(f"总成本：￥{total_cost_rmb:.2f}(${total_cost_rmb / 7.3:.2f})")
+    logger.info(
+        f"千字成本：￥{total_cost_rmb / total_chars * 1000:.2f}"
+        f"(${total_cost_rmb / total_chars * 1000 / 7.3:.2f})"
+    )
+    logger.info("-" * 30)

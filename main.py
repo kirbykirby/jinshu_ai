@@ -1,18 +1,11 @@
 import os
-from translator import init_translator_and_translate, BLT_BASE_URL_2
+from translator import init_translator_and_translate, BLT_BASE_URL_2, Jinshu_translator_prompt
 from dotenv import load_dotenv
 
 
 if __name__ == "__main__":
     load_dotenv()
     BLT_KEY = os.environ.get("BLT_KEY")
-    additional_instructions = """
-- Convert dates to Western calendar in parentheses. Examples: the first year of Yongjia (307), the Yongjia period (307-313)
-- Use (DATE) if year is uncertain.
-- Maintain a tone appropriate for historical context and avoid modern colloquialisms.
-- Preserve cultural context and historical authenticity.
-- Note significant allusions with * and include brief context in footnotes.
-"""
     init_translator_and_translate(
         api_key=BLT_KEY,
         model="claude-3-5-sonnet-latest",
@@ -30,5 +23,5 @@ if __name__ == "__main__":
         max_chars_per_paragraph=400,
         min_chars_per_paragraph=15,
         debug=True,
-        special_instructions=additional_instructions,
+        special_instructions=Jinshu_translator_prompt,
     )

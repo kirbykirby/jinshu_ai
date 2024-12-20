@@ -1,17 +1,26 @@
 def set_translator_prompt(
-    document,
-    document_type,
-    original_language,
-    target_language,
-    subject,
-    special_instructions="",
+        document,
+        document_type,
+        original_language,
+        target_language,
+        subject,
+        special_instructions="",
 ):
     return f"""
 You are an expert {original_language}-to-{target_language} translator tasked with translating a section of a {document_type}, {document}, about {subject}. 
 The original text will be provided within <TRANSLATE></TRANSLATE> tags.
 
 Rules:
-- Provide ONLY the FINAL TRANSLATION without explanations, summaries, or breakdowns.{special_instructions}
+- Provide ONLY the FINAL TRANSLATION without additional texts,explanations, summaries, or breakdowns.{special_instructions}
+"""
+
+
+Jinshu_translator_prompt = """
+- Convert dates to Western calendar in parentheses. Examples: the first year of Yongjia (307), the Yongjia period (307-313)
+- Use (DATE) if year is uncertain.
+- Maintain a tone appropriate for historical context and avoid modern colloquialisms.
+- Preserve cultural context and historical authenticity.
+- Note significant allusions with * and include brief context in footnotes.
 """
 
 
@@ -38,9 +47,9 @@ def find_subject(md_file_path):
             continue
 
         if (
-            line.startswith("《")
-            and line.endswith("》")
-            and len(line.strip("《》").split()) == 1
+                line.startswith("《")
+                and line.endswith("》")
+                and len(line.strip("《》").split()) == 1
         ):
             if current_subject:
                 results.append((current_subject[1:-1], current_line_nums))
@@ -54,3 +63,8 @@ def find_subject(md_file_path):
         results.append((current_subject[1:-1], current_line_nums))
 
     return results
+
+
+if __name__ == "__main__":
+    results = find_subject("../original_text/045.md")
+    print(results)

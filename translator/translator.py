@@ -3,7 +3,12 @@ from loguru import logger
 from tqdm import tqdm
 from .config import BLT_BASE_URL_2
 from .prompts import set_translator_prompt, wrap_prompt
-from .utils import preprocess_text, save_translations, perview_paragraphs
+from .utils import (
+    preprocess_text,
+    save_translations,
+    perview_paragraphs,
+    print_translation_stats,
+)
 from .chatbot import Chatbot
 
 
@@ -34,10 +39,40 @@ def init_chatbot(
     )
 
 
-def get_chatbot_response(
-    user_prompt, bot, stream=True, print_response=True, debug=True
+def validate_translation_mode(
+    mode: str,
+    num_paragraphs: int,
+    start_paragraph: int,
+    translate_paragraphs: int,
+    paragraph_indices: list,
 ):
-    return bot.get_response(user_prompt, stream, print_response, debug)
+    if mode in ["全部", "all", "All", "a"]:
+        translate_count = num_paragraphs
+        start_paragraph = 0
+        paragraphs_to_translate = range(
+            start_paragraph, start_paragraph + translate_count
+        )
+    elif mode in ["分段", "segment", "Segment", "s"]:
+        translate_count = min(translate_paragraphs, num_paragraphs - start_paragraph)
+        paragraphs_to_translate = range(
+            start_paragraph, start_paragraph + translate_count
+        )
+    elif mode in ["列表", "list", "List", "l"]:
+        if not paragraph_indices:
+            raise ValueError(
+                "列表模式需要提供段落索引列表/List mode requires paragraph indices"
+            )
+        # 验证索引的有效性
+        invalid_indices = [i for i in paragraph_indices if i >= num_paragraphs or i < 0]
+        if invalid_indices:
+            raise ValueError(
+                f"无效的段落索引/Invalid paragraph indices: {invalid_indices}"
+            )
+        translate_count = len(paragraph_indices)
+        paragraphs_to_translate = paragraph_indices
+    else:
+        raise ValueError(f"不支持的翻译模式/Unsupported translation mode：{mode}")
+    return translate_count, paragraphs_to_translate
 
 
 def translate_paragraph(bot: Chatbot, paragraph: str, debug: bool = False):
@@ -54,6 +89,7 @@ def translate(
     translate_paragraphs: int = 5,
     start_paragraph: int = 0,
     mode: str = "分段",
+    paragraph_indices: list = None,
     max_chars_per_paragraph: int = 500,
     min_chars_per_paragraph: int = 10,
     debug: bool = False,
@@ -67,7 +103,8 @@ def translate(
         result_text_docx (str): docx文件路径
         translate_paragraphs (int, optional): 翻译的段落数. Defaults to 5.
         start_paragraph (int, optional): 开始翻译的段落数. Defaults to 0.
-        mode (str, optional): 翻译模式 ["全部"|"分段"]. Defaults to "分段".
+        mode (str, optional): 翻译模式 ["全部"|"分段"|"列表"]. Defaults to "分段".
+        paragraph_indices (list, optional): 需要翻译的段落索引列表. Defaults to None.
         max_chars_per_paragraph (int, optional): 每段最大字数. Defaults to 500.
         min_chars_per_paragraph (int, optional): 每段最小字数. Defaults to 10.
         debug (bool, optional): 是否开启debug模式. Defaults to False.
@@ -81,21 +118,17 @@ def translate(
         )
 
     # 根据模式设置翻译范围
-    if mode in ["全部", "all", "All", "a"]:
-        translate_count = num_paragraphs
-        start_paragraph = 0
-    elif mode in ["分段", "segment", "Segment", "s"]:
-        translate_count = min(translate_paragraphs, num_paragraphs - start_paragraph)
-    else:
-        raise ValueError(f"不支持的翻译模式/Unsupported translation mode：{mode}")
+    translate_count, paragraphs_to_translate = validate_translation_mode(
+        mode, num_paragraphs, start_paragraph, translate_paragraphs, paragraph_indices
+    )
 
     total_chars = perview_paragraphs(mode, paragraphs, start_paragraph, translate_count)
-    print("*" * 8 + f" 开 始 翻 译 / TRANSLATING " + "*" * 8)
+    print("*" * 8 + " 开 始 翻 译 / TRANSLATING " + "*" * 8)
 
     total_cost_rmb = 0
     translated_paragraphs = []
     for i in tqdm(
-        range(start_paragraph, start_paragraph + translate_count),
+        paragraphs_to_translate,
         desc="翻译进度",
         total=translate_count,
         unit="段",
@@ -105,27 +138,17 @@ def translate(
         total_cost_rmb = stat["total_cost_rmb"]
 
     save_translations(result_text_docx, translated_paragraphs)
-    total_time = time.time() - start_time
-    logger.info("-" * 12 + f" 翻译完成/Translation finished " + "-" * 12)
-    logger.info(
-        f"翻译文档/Document：{original_text_md}，输出文档/Output：{result_text_docx}"
+    print_translation_stats(
+        start_time,
+        original_text_md,
+        result_text_docx,
+        mode,
+        start_paragraph,
+        translate_count,
+        paragraphs_to_translate,
+        total_chars,
+        total_cost_rmb,
     )
-    logger.info(f"翻译模式/Translation mode：{mode}")
-    logger.info(f"从第{start_paragraph}段开始翻译{translate_count}段")
-    logger.info(
-        f"Translated {translate_count} paragraphs from paragraph {start_paragraph}"
-    )
-    logger.info(f"翻译段落数/Paragraphs translated：{translate_count}")
-    logger.info(f"总耗时（秒）/Total time (s)：{total_time:.2f}")
-    logger.info(f"原文字数/Total characters：{total_chars}")
-    logger.info(f"每秒字数/Characters per second：{total_chars / total_time:.2f}")
-    logger.info(
-        f"总成本/Total cost：￥{total_cost_rmb:.2f}(${total_cost_rmb / 7.3:.2f})"
-    )
-    logger.info(
-        f"千字成本/Cost per thousand characters：￥{total_cost_rmb / total_chars * 1000:.2f}(${total_cost_rmb / total_chars * 1000 / 7.3:.2f})"
-    )
-    logger.info("-" * 30)
 
 
 def init_translator_and_translate(
@@ -136,17 +159,28 @@ def init_translator_and_translate(
     document_type="historical records",
     original_language="Classical Chinese",
     target_language="English",
-    subject="Liu Cong",
-    original_text_md="original_text/102_Liu_Cong.md",
-    result_text_docx="results/102_Liu_Cong.docx",
+    subject=None,
+    original_text_md=None,
+    result_text_docx=None,
     translate_paragraphs=5,
     start_paragraph=0,
     mode="分段",
+    paragraph_indices=None,
     max_chars_per_paragraph=500,
     min_chars_per_paragraph=10,
     debug=False,
     special_instructions="",
 ):
+    if None in [subject, original_text_md, result_text_docx]:
+        subject = input("请输入要翻译的主题/Enter the subject to be translated: ")
+        original_text_md = input(
+            "请输入原始文本的md文件路径/Enter the path of the original text in md format: "
+        )
+        result_text_docx = input(
+            "请输入翻译结果的docx文件路径/Enter the path of the translated text in docx format: "
+        )
+        mode = "all"
+
     system_prompt = set_translator_prompt(
         document=document,
         document_type=document_type,
@@ -158,7 +192,7 @@ def init_translator_and_translate(
 
     if debug:
         logger.debug(
-            f"如需修改系统提示词，前往prompts.py/Modify system prompt in prompts.py if needed."
+            "如需修改系统提示词，前往prompts.py/Modify system prompt in prompts.py if needed."
         )
         logger.debug(f"请确认系统提示词/Confirm system prompt：\n{system_prompt}")
 
@@ -179,6 +213,7 @@ def init_translator_and_translate(
         translate_paragraphs,
         start_paragraph,
         mode,
+        paragraph_indices,
         max_chars_per_paragraph,
         min_chars_per_paragraph,
         debug,
