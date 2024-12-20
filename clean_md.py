@@ -11,7 +11,7 @@ def clean_md(md_file):
     )
     logger.info("清洗逻辑：1.删除前20行和最后2行 2.确定行首为数字或《 ")
 
-    if lines[0][0] == "《":
+    if lines[0][0].isdigit() or lines[0][0] == "《":
         logger.warning("文档似乎已经清洗过了，是否继续清洗？(y/n): ")
         if_clean = input()
         if if_clean.lower() == "n":
@@ -25,16 +25,26 @@ def clean_md(md_file):
     lines = lines[20:-2]
 
     cleaned_lines = []
+    current_text = ""
+
     for line in lines:
         line = line.strip()
         if not line:  # 跳过空行
             continue
 
-        # 检查行首是否为数字或《
-        if not (line[0].isdigit() or line[0] == "《"):
-            continue
+        # 如果行首是数字或《，说明是新段落的开始
+        if line[0].isdigit() or line[0] == "《":
+            # 保存之前的文本
+            if current_text:
+                cleaned_lines.append(current_text)
+            current_text = line
+        else:
+            # 不是新段落的开始，则与当前文本合并
+            current_text += line
 
-        cleaned_lines.append(line)
+    # 添加最后一段文本
+    if current_text:
+        cleaned_lines.append(current_text)
 
     with open(md_file, "w", encoding="utf-8") as f:
         f.write("\n".join(cleaned_lines))
@@ -52,4 +62,4 @@ def get_md_word_count(md_file):
 
 
 if __name__ == "__main__":
-    clean_md("original_text/128.md")
+    clean_md("original_text/045.md")

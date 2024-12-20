@@ -19,7 +19,7 @@ def wrap_prompt(prompt, tag="TRANSLATE"):
     return f"<{tag}>{prompt}</{tag}>"
 
 
-def auto_find_subject(md_file_path):
+def find_subject(md_file_path):
     """
     找出markdown文件中单独一行的《》标记作为主题，并标记各段落所属的主题范围
     输出主题和相应的分段序号

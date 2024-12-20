@@ -2,7 +2,6 @@ import os
 import re
 import string
 import sys
-
 from docx import Document
 from .formatter import set_document_style, reformat_docx
 
