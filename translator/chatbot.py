@@ -31,14 +31,7 @@ class Chatbot:
     ):
         """通用聊天机器人（使用柏拉图AI）"""
         self.client = OpenAI(base_url=base_url, api_key=api_key)
-        self.system_prompt = (
-            system_prompt
-            or """你是一个友好的AI助手。
-                            - 你应该用简洁清晰的语言回答问题
-                            - 对于复杂问题，你应该分步骤解释
-                            - 你应该保持礼貌和专业性
-                            - 如果你不确定答案，要诚实地说出来"""
-        )
+        self.system_prompt = system_prompt
 
         # 初始化对话历史
         self.conversation_history = deque(
@@ -198,7 +191,9 @@ class Chatbot:
         }
         if debug:
             logger.debug(f"累计令牌数/Total Tokens：{self.usage_metrics.total_tokens}")
-            logger.debug(f"累计成本/Total Cost：￥{self.usage_metrics.total_cost:.3f}(${self.usage_metrics.total_cost / 7.3:.3f})")
+            logger.debug(
+                f"累计成本/Total Cost：￥{self.usage_metrics.total_cost:.3f}(${self.usage_metrics.total_cost / 7.3:.3f})"
+            )
         return stat
 
     def get_response(self, message: str, stream=True, print_response=True, debug=False):
@@ -229,12 +224,6 @@ class Chatbot:
                     logger.debug(f"模型/Model：{self.model}")
                     logger.debug(f"耗时（秒）/Total Time (s)：{total_time:.2f}")
                     logger.debug(f"字数/Character Count：{len(full_response)}")
-                    # logger.debug(f"每秒字数：{len(full_response) / total_time:.2f}")
-                    # logger.debug(f"总块数：{metrics['chunk_count']}")
-                    # logger.debug(
-                    #     f"每秒令牌数：{metrics['total_tokens'] / total_time:.2f}"
-                    # )
-                    # logger.debug(f"首字延迟: {self.first_char_time:.2f}秒")
                 stat = self.get_usage_statistics(debug)
 
                 return full_response, stat

@@ -7,7 +7,7 @@ if __name__ == "__main__":
     load_dotenv()
     BLT_KEY = os.environ.get("BLT_KEY")
     additional_instructions = """
-- Convert dates to the Western calendar in parentheses (e.g., Yongjia's first year (307), the Yongjia period (307-313)) or use (DATE) if uncertain.
+- Convert dates to the Western calendar in parentheses (e.g., the first year of Yongjia (307), the Yongjia period (307-313)) or use (DATE) if uncertain.
 - Maintain a tone appropriate for historical context and avoid modern colloquialisms.
 """
     init_translator_and_translate(

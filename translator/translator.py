@@ -7,7 +7,9 @@ from .utils import preprocess_text, save_translations, perview_paragraphs
 from .chatbot import Chatbot
 
 
-logger.add("translator.log", format="{time:YYYY-MM-DD HH:mm:ss}|{message}", level="INFO")
+logger.add(
+    "translator.log", format="{time:YYYY-MM-DD HH:mm:ss}|{message}", level="INFO"
+)
 
 
 def init_chatbot(
@@ -85,7 +87,9 @@ def translate(
         print(f"将翻译的自然段数/Paragraph count to translate：{translate_count}")
     elif mode in ["分段", "segment", "Segment", "s"]:
         translate_count = min(translate_paragraphs, num_paragraphs - start_paragraph)
-        print(f"将翻译{translate_count}段/Will translate {translate_count} paragraph(s)：{start_paragraph}-{start_paragraph + translate_count - 1}")
+        print(
+            f"将翻译{translate_count}段/Will translate {translate_count} paragraph(s)：{start_paragraph}-{start_paragraph + translate_count - 1}"
+        )
     else:
         raise ValueError(f"不支持的翻译模式/Unsupported translation mode：{mode}")
 
@@ -107,16 +111,24 @@ def translate(
     save_translations(result_text_docx, translated_paragraphs)
     total_time = time.time() - start_time
     logger.info("-" * 12 + f" 翻译完成/Translation finished " + "-" * 12)
-    logger.info(f"翻译文档/Document：{original_text_md}，输出文档/Output：{result_text_docx}")
+    logger.info(
+        f"翻译文档/Document：{original_text_md}，输出文档/Output：{result_text_docx}"
+    )
     logger.info(f"翻译模式/Translation mode：{mode}")
     logger.info(f"从第{start_paragraph}段开始翻译{translate_count}段")
-    logger.info(f"Translated {translate_count} paragraphs from paragraph {start_paragraph}")
+    logger.info(
+        f"Translated {translate_count} paragraphs from paragraph {start_paragraph}"
+    )
     logger.info(f"翻译段落数/Paragraphs translated：{translate_count}")
     logger.info(f"总耗时（秒）/Total time (s)：{total_time:.2f}")
     logger.info(f"原文字数/Total characters：{total_chars}")
     logger.info(f"每秒字数/Characters per second：{total_chars / total_time:.2f}")
-    logger.info(f"总成本/Total cost：￥{total_cost_rmb:.2f}(${total_cost_rmb / 7.3:.2f})")
-    logger.info(f"千字成本/Cost per thousand characters：￥{total_cost_rmb / total_chars * 1000:.2f}(${total_cost_rmb / total_chars * 1000 / 7.3:.2f})")
+    logger.info(
+        f"总成本/Total cost：￥{total_cost_rmb:.2f}(${total_cost_rmb / 7.3:.2f})"
+    )
+    logger.info(
+        f"千字成本/Cost per thousand characters：￥{total_cost_rmb / total_chars * 1000:.2f}(${total_cost_rmb / total_chars * 1000 / 7.3:.2f})"
+    )
     logger.info("-" * 30)
 
 
@@ -149,7 +161,9 @@ def init_translator_and_translate(
     )
 
     if debug:
-        logger.debug(f"如需修改系统提示词，前往prompts.py/Modify system prompt in prompts.py if needed.")
+        logger.debug(
+            f"如需修改系统提示词，前往prompts.py/Modify system prompt in prompts.py if needed."
+        )
         logger.debug(f"请确认系统提示词/Confirm system prompt：\n{system_prompt}")
 
     bot = init_chatbot(

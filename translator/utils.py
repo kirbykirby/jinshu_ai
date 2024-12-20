@@ -110,7 +110,9 @@ def perview_paragraphs(mode, paragraphs, start_paragraph, translate_count):
     print(f"翻译字数/Characters to translate：{total_chars}")
     estimated_cost_rmb = total_chars * 0.307 / 1000
     estimated_cost_usd = estimated_cost_rmb / 7.3
-    print(f"预计成本/Estimated cost：￥{estimated_cost_rmb:.2f}(${estimated_cost_usd:.2f})")
+    print(
+        f"预计成本/Estimated cost：￥{estimated_cost_rmb:.2f}(${estimated_cost_usd:.2f})"
+    )
     confirm = input("是否继续？/Continue?(y/n): ")
     if confirm.lower() != "y":
         print("***** 已取消翻译/Translation cancelled *****")

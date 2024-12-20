@@ -1,6 +1,5 @@
-import re
 from docx import Document
-from docx.enum.text import WD_ALIGN_PARAGRAPH, WD_PARAGRAPH_ALIGNMENT
+from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 from docx.shared import Cm, Pt
@@ -141,7 +140,3 @@ def reformat_docx(file_path, output_path=None, first_line_indent=0.74):
         apply_paragraph_formatting(paragraph, first_line_indent)
 
     doc.save(output_path)
-
-
-if __name__ == "__main__":
-    reformat_docx("../results/110_Murong_Jun.docx")

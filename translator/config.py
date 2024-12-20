@@ -1,6 +1,4 @@
-"""
-Anthropic
-"""
+OPENAI_BASE_URL = "https://api.openai.com/v1"
 
 # 柏拉图AI注册链接
 link = "https://api.bltcy.ai/register?aff=q3ue"

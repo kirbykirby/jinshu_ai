@@ -30,7 +30,7 @@ def auto_find_subject(md_file_path):
     current_subject = None
     current_line_nums = []
 
-    with open(md_file_path, 'r', encoding='utf-8') as f:
+    with open(md_file_path, "r", encoding="utf-8") as f:
         lines = f.readlines()
 
     for i, line in enumerate(lines, 0):
@@ -39,7 +39,11 @@ def auto_find_subject(md_file_path):
         if not line:
             continue
 
-        if line.startswith('《') and line.endswith('》') and len(line.strip('《》').split()) == 1:
+        if (
+            line.startswith("《")
+            and line.endswith("》")
+            and len(line.strip("《》").split()) == 1
+        ):
             if current_subject:
                 results.append((current_subject[1:-1], current_line_nums))
             current_subject = line
@@ -52,9 +56,3 @@ def auto_find_subject(md_file_path):
         results.append((current_subject[1:-1], current_line_nums))
 
     return results
-
-
-if __name__ == "__main__":
-    subjects = auto_find_subject("../original_text/124.md")
-    print(subjects)
-    print(len(subjects))
