@@ -3,10 +3,8 @@ import re
 import string
 import sys
 import time
-
 from docx import Document
 from loguru import logger
-
 from .formatter import set_document_style, reformat_docx
 
 
