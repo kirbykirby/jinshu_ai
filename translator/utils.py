@@ -1,6 +1,8 @@
 import os
 import re
 import string
+import sys
+
 from docx import Document
 from .formatter import set_document_style, reformat_docx
 
@@ -105,6 +107,9 @@ def perview_paragraphs(mode, paragraphs, start_paragraph, translate_count):
     )
 
     print(f"翻译模式/Translation mode: {mode}")
+    print(
+        f"将翻译{translate_count}段/Will translate {translate_count} paragraph(s)：{start_paragraph}-{start_paragraph + translate_count - 1}"
+    )
     print(f"开头20字/First 20 Characters: {preview_text_start}...")
     print(f"结尾20字/Last 20 Characters:...{preview_text_end}")
     print(f"翻译字数/Characters to translate：{total_chars}")
@@ -116,7 +121,7 @@ def perview_paragraphs(mode, paragraphs, start_paragraph, translate_count):
     confirm = input("是否继续？/Continue?(y/n): ")
     if confirm.lower() != "y":
         print("***** 已取消翻译/Translation cancelled *****")
-        return
+        sys.exit(0)
 
     return total_chars
 

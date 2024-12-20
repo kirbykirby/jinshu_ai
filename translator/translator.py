@@ -84,12 +84,8 @@ def translate(
     if mode in ["全部", "all", "All", "a"]:
         translate_count = num_paragraphs
         start_paragraph = 0
-        print(f"将翻译的自然段数/Paragraph count to translate：{translate_count}")
     elif mode in ["分段", "segment", "Segment", "s"]:
         translate_count = min(translate_paragraphs, num_paragraphs - start_paragraph)
-        print(
-            f"将翻译{translate_count}段/Will translate {translate_count} paragraph(s)：{start_paragraph}-{start_paragraph + translate_count - 1}"
-        )
     else:
         raise ValueError(f"不支持的翻译模式/Unsupported translation mode：{mode}")
 

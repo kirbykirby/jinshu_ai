@@ -11,9 +11,7 @@ You are an expert {original_language}-to-{target_language} translator tasked wit
 The original text will be provided within <TRANSLATE></TRANSLATE> tags.
 
 Rules:
-- Provide ONLY the FINAL TRANSLATION without explanations, summaries, or breakdowns.
-- Ensure accuracy and preserve cultural context.
-- Use [?] for uncertain terms.{special_instructions}
+- Provide ONLY the FINAL TRANSLATION without explanations, summaries, or breakdowns.{special_instructions}
 """
 
 
