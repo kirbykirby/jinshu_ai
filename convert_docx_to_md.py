@@ -9,4 +9,4 @@ def convert_docx_to_md(docx_file, md_file):
 
 
 if __name__ == "__main__":
-    convert_docx_to_md("edited/123_Murong_Chui.docx", "md_files/123_Murong_Chui.md")
+    convert_docx_to_md("edited/123_Murong_Chui.docx", "md_files/123_Murong_Chui_2.md")
