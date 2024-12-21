@@ -1,7 +1,7 @@
 <div align="center">
 <h1> 晋书AI </h1>
 
-[**English**](README_EN.md) | **简体中文**
+[**English**](docs/README_EN.md) | **简体中文**
 </div>
 
 ---

@@ -4,7 +4,7 @@
 <h1>Jinshu AI</h1>
 
 
-**English** | [**简体中文**](README.md)
+**English** | [**简体中文**](../README.md)
 
 </div>
 

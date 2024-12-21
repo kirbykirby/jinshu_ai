@@ -1,7 +1,7 @@
 [project]
-name = "md_translator"
+name = "jinshu_ai"
 version = "0.1.0"
-description = "Add your description here"
+description = "Python tool for translating md documents to formatted docx"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [

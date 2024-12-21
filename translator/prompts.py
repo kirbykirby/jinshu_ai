@@ -66,5 +66,5 @@ def find_subject(md_file_path):
 
 
 if __name__ == "__main__":
-    results = find_subject("../original_text/045.md")
+    results = find_subject("../1_SOURCE/045.md")
     print(results)
