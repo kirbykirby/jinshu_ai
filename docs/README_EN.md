@@ -6,6 +6,7 @@
 
 **English** | [**简体中文**](../README.md)
 
+📑 [**Jinshu Translation**](contents.md) 📑
 </div>
 
 ---
