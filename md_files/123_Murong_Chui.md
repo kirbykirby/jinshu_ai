@@ -92,7 +92,7 @@ I think of how you are approaching old age, yet become a traitor in your old age
 
 Chui attacked and captured the outer walls of Ye. Pi firmly defended the inner city. Chui then dug trenches to surround it. He sent the elderly and weak to Weijun and Feixiang, built Xinxing City to store supplies and equipment, and diverted the Zhang River to flood the city.
 
-Zhai Bin secretly suggested to the Dingling and western people that he be appointed as Director of the Imperial Secretariat. When Chui consulted his officials about this, General who Pacifies the East Feng Heng angrily said: "Even a thousand-li horse cannot escape its bridle - this shows that even animals cannot be controlled by humans. Bin is a barbarian commoner who, taking advantage of circumstances, saw his brothers become kings - since [Huan Dou](#footnote-1), there has never been such fortune. Now he's become greedy and forgotten his limits, making such demands. His spirit is confused, and he won't survive the year."
+Zhai Bin secretly suggested to the Dingling and western people that he be appointed as Director of the Imperial Secretariat. When Chui consulted his officials about this, General who Pacifies the East Feng Heng angrily said: "Even a thousand-li horse cannot escape its bridle - this shows that even animals cannot be controlled by humans. Bin is a barbarian commoner who, taking advantage of circumstances, saw his brothers become kings - since Huan Dou <a id="footnote-1">[[1]](#footnote)</a>, there has never been such fortune. Now he's become greedy and forgotten his limits, making such demands. His spirit is confused, and he won't survive the year."
 
 Though Chui remained patient and tolerant, he decreed: "The King Zhai's merits deserve a high position, but as the government offices are not yet established, this position cannot be created now. We shall discuss this after the realm is unified." Enraged, Bin secretly allied with Fu Pi and had the Dingling breach the dikes to release the floodwaters. When discovered, Chui executed him.
 
@@ -197,4 +197,5 @@ Chui reached Juyang in Shangu and died there in the 21st year of Taiyuan (396) a
 
 He was posthumously titled Emperor Chengwu, with the temple name Shizu, and his tomb was called Xuanping Mausoleum.
 
-<a id="footnote-1">[1] Huan Dou (驩兜) , one of the Four Fiends, was Gun (鲧)'s grandson and the leader of the Sanmiao tribe in ancient Chinese legends. </a>
+<a id="footnote">Footnotes</a>
+1. Huan Dou (驩兜) , one of the Four Fiends, was Gun (鲧)'s grandson and the leader of the Sanmiao tribe in ancient Chinese legends.[[↑]](#footnote-1)
