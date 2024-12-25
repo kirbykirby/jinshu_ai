@@ -1,5 +1,8 @@
 # Book of Jin (晉書)
 
+🤡 [========>................] 13.8%
+    18/130 Volumes
+
 🤖**Translated by AI**
 
 🤡**Reviewed by Human**

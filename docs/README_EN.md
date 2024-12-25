@@ -7,30 +7,11 @@
 **English** | [**简体中文**](../README.md)
 
 📑 [**Jinshu Translation**](contents.md) 📑
+
+🤡 [========>................] 13.8%
+    18/130 Volumes
 </div>
 
-<div style="max-width: 300px; margin: 0 auto;">
-  <div style="background-color: #f1f1f1; border-radius: 10px; padding: 3px; position: relative;">
-    <div style="
-      width: 13.8%; 
-      height: 20px; 
-      border-radius: 10px;
-      background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1);
-      animation: shimmer 2s infinite linear">
-    </div>
-    <div style="
-      position: absolute;
-      right: 80%;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 20px;">
-      🤡
-    </div>
-  </div>
-  <div style="text-align: center; font-size: 22px; margin-top: 8px;">
-    <strong>18/130 (13.8%)</strong>
-  </div>
-</div>
 
 ---
 
