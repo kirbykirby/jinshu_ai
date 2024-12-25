@@ -4,7 +4,42 @@
 [**English**](docs/README_EN.md) | **简体中文**
 
 📑 [**晋书翻译目录**](docs/contents.md) 📑
+
 </div>
+
+<div style="max-width: 300px; margin: 0 auto;">
+  <div style="background-color: #f1f1f1; border-radius: 10px; padding: 3px; position: relative;">
+    <div style="
+      width: 13.8%; 
+      height: 20px; 
+      border-radius: 10px;
+      background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1);
+      animation: shimmer 2s infinite linear">
+    </div>
+    <div style="
+      position: absolute;
+      right: 80%;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 20px;">
+      🤡
+    </div>
+  </div>
+  <div style="text-align: center; font-size: 22px; margin-top: 8px;">
+    <strong>18/130 (13.8%)</strong>
+  </div>
+</div>
+
+<style>
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+</style>
 
 ---
 ## [🤓 序](docs/PROLOGUE_ZH.MD)
