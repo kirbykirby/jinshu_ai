@@ -2,7 +2,6 @@ import os
 from translator import init_translator_and_translate, BLT_BASE_URL_2, Jinshu_translator_prompt
 from dotenv import load_dotenv
 
-
 if __name__ == "__main__":
     load_dotenv()
     BLT_KEY = os.environ.get("BLT_KEY")
