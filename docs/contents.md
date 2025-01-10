@@ -130,8 +130,8 @@
 | 🤡Volume 106  |        載記第6 石季龍上        |                   Shi Jilong Part One                    |       |
 | 🤡Volume 107  |  載記第7 石季龍下 石世 石遵 石鑒 冉閔  | Shi Jilong Part Two; Shi Shi; Shi Zun; Shi Jian; Ran Min |       |
 | 🤡Volume 108  |     載記第8 慕容廆 裴嶷 高瞻      |               Murong Hui; Pei Yi; Gao Zhan               |       |
-| 🤖Volume 109  |     載記第9 慕容皝 慕容翰 陽裕     |            Murong Huang; Murong Han; Yang Yu             |       |
-| 🤖Volume 110  |     載記第10 慕容儁 韓恆 李產     |              Murong Jun; Han Heng; Li Chan               |       |
+| 🤡Volume 109  |     載記第9 慕容皝 慕容翰 陽裕     |            Murong Huang; Murong Han; Yang Yu             |       |
+| 🤡Volume 110  |     載記第10 慕容儁 韓恆 李產     |              Murong Jun; Han Heng; Li Chan               |       |
 | 🤖Volume 111  |  載記第11 慕容暐 慕容恪 陽騖 皇甫真   |       Murong Wei; Murong Ke; Yang Wu; Huangfu Zhen       |       |
 |  Volume 112   |  載記第12 苻洪 苻健 苻生 苻雄 王墮   |      Fu Hong; Fu Jian; Fu Sheng; Fu Xiong; Wang Duo      |       |
 |  Volume 113   |        載記第13 苻堅上        |                     Fu Jian Part One                     |       |
